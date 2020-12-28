@@ -2,7 +2,7 @@ import Task from "./Task.vue";
 import { action } from "@storybook/addon-actions";
 
 export default {
-  title: "Task",
+  title: "Task/Task",
   component: Task,
   excludeStories: "/.*Data$/"
 };
@@ -30,4 +30,18 @@ Default.args = {
   }
 };
 
-export const Pinned = Template.bind({})
+export const Pinned = Template.bind({});
+Pinned.args = {
+  task: {
+    ...Default.args.task,
+    state: "TASK_PINNED"
+  }
+};
+
+export const Archived = Template.bind({});
+Archived.args = {
+  task: {
+    ...Default.args.task,
+    state: "TASK_ARCHIVED"
+  }
+};
