@@ -1,0 +1,33 @@
+import Task from "./Task.vue";
+import { action } from "@storybook/addon-actions";
+
+export default {
+  title: "Task",
+  component: Task,
+  excludeStories: "/.*Data$/"
+};
+
+export const actionsData = {
+  onPinTask: action("pin-task"),
+  onArchiveTask: action("archive-task")
+};
+
+const Template = (args, { argTypes }) => ({
+  components: Task,
+  props: Object.keys(argTypes),
+  methods: actionsData,
+  template:
+    '<Task v-bind="$props" @pin-task="onPinTask" @archive-task="onArchiveTask" />'
+});
+
+export const Default = Template.bind({});
+Default.args = {
+  task: {
+    id: "1",
+    title: "Test Task",
+    state: "TASK_INBOX",
+    updatedAt: new Date(2018, 0, 1, 9, 0)
+  }
+};
+
+export const Pinned = Template.bind({})
